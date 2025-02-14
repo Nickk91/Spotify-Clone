@@ -1,13 +1,6 @@
 import { clerkClient } from "@clerk/express";
 
 export const protectRoute = async (req, res, next) => {
-  //   const { userId } = (await clerkClient.users) / getUser(req.userId);
-  //   if (!userId) {
-  //     return res.status(401).json({ message: "Unauthorized" });
-  //   }
-  //   req.userId = userId;
-  //   next();
-
   if (!req.auth.userId) {
     return res
       .status(401)
@@ -27,5 +20,7 @@ export const requireAdmin = async (req, res, next) => {
         .json({ message: "Unauthorized  - you must be an admin" });
     }
     next();
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
