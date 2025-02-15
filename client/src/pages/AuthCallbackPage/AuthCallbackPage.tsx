@@ -4,15 +4,18 @@ import { useUser } from "@clerk/clerk-react";
 import { Loader } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMusicStore } from "@/stores/useMusicStore.ts";
 
 const AuthCallbackPage = () => {
+  const { albums, songs, fetchAlbums } = useMusicStore();
+
   const { isLoaded, user } = useUser();
   const navigate = useNavigate();
   const syncAttempted = useRef(false);
 
   useEffect(() => {
     const syncUser = async () => {
-      if (!isLoaded || !user) return;
+      if (!isLoaded || !user || syncAttempted.current) return;
       try {
         syncAttempted.current = true;
 
