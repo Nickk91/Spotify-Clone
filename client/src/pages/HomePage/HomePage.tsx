@@ -1,5 +1,11 @@
+import Topbar from "@/components/ui/Topbar.tsx";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Topbar />
+    </div>
+  );
 };
 
 export default HomePage;
