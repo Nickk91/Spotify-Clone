@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/button";
 
 import { Clock, Play } from "lucide-react";
 
+const formatDuration = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
+
 const AlbumPage = () => {
   const { albumId } = useParams();
   const { fetchAlbumById, currentAlbum, isLoading } = useMusicStore();
@@ -71,6 +77,7 @@ const AlbumPage = () => {
                   <Clock className="size-4" />
                 </div>
               </div>
+
               {/* songs list */}
               <div className="px-6">
                 <div className="space-y-2 py-4">
@@ -90,19 +97,21 @@ const AlbumPage = () => {
                           alt={song.title}
                           className="size-10"
                         />
-                      </div>
 
-                      <div>
-                        <div className="font-medium text-white">
-                          {song.title}
+                        <div>
+                          <div className="font-medium text-white">
+                            {song.title}
+                          </div>
+                          <div>{song.artist}</div>
                         </div>
-                        <div>{song.artist}</div>
                       </div>
 
                       <div className="flex items-center">
                         {song.createdAt.split("T")[0]}
                       </div>
-                      <div className="flex items-center">{song.cduration}</div>
+                      <div className="flex items-center">
+                        {formatDuration(song.cduration)}
+                      </div>
                     </div>
                   ))}
                 </div>

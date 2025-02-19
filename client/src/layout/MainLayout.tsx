@@ -5,6 +5,7 @@ import {
   ResizableHandle,
 } from "@/components/ui/resizable";
 import LeftSidebar from "@/layout/components/LeftSidebar.tsx";
+import FriendsActivity from "./components/FriendsActivity";
 
 const MainLayout = () => {
   const isMobile = false;
@@ -40,7 +41,7 @@ const MainLayout = () => {
           maxSize={25}
           collapsedSize={0}
         >
-          friends activity
+          <FriendsActivity />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
