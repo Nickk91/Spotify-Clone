@@ -1,5 +1,5 @@
 import { useSignIn } from "@clerk/clerk-react";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button.tsx";
 const SignInOAuthButtons = () => {
   const { signIn, isLoaded } = useSignIn();
 
@@ -8,7 +8,7 @@ const SignInOAuthButtons = () => {
   const signInWithGoogle = () => {
     signIn?.authenticateWithRedirect({
       strategy: "oauth_google",
-      redirectUrl: "/sso_callback",
+      redirectUrl: "/sso-callback",
       redirectUrlComplete: "/auth-callback",
     });
   };

@@ -1,3 +1,5 @@
+// AuthCallbackPage
+
 import { Card, CardContent } from "@/components/ui/card";
 import { axiosInstance } from "@/lib/axios";
 import { useUser } from "@clerk/clerk-react";
@@ -19,7 +21,7 @@ const AuthCallbackPage = () => {
       try {
         syncAttempted.current = true;
 
-        await axiosInstance.post("/auth-callback", {
+        await axiosInstance.post("auth/auth-callback", {
           id: user.id,
           firstName: user.firstName,
           lastName: user.lastName,
