@@ -14,6 +14,8 @@ const FriendsActivity = () => {
   }, [fetchUsers, user]);
 
   const isPlaying = true;
+  console.log("users", users);
+  console.log("user", user);
 
   return (
     <div className="h-full bg-zinc-900 rounded-lg flex flex-col">

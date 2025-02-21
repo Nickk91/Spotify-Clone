@@ -1,3 +1,5 @@
+/* user.model.js */
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -6,16 +8,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     imageUrl: {
       type: String,
       required: true,
     },
-    clrekId: {
+    clerkId: {
       type: String,
       required: true,
       unique: true,

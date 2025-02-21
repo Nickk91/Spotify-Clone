@@ -7,6 +7,7 @@ interface MusicStore {
   albums: Album[];
   isLoading: boolean;
   error: string | null;
+  currentAlbum: Album | null;
 
   fetchAlbums: () => Promise<void>;
   fetchAlbumById: (id: string) => Promise<void>;
@@ -17,6 +18,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
   songs: [],
   isLoading: false,
   error: null,
+  currentAlbum: null,
 
   fetchAlbums: async () => {
     set({ isLoading: true, error: null });

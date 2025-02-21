@@ -24,11 +24,11 @@ const AlbumPage = () => {
 
   return (
     <div className="h-full">
-      <ScrollArea className="h-full">
+      <ScrollArea className="h-full rounded-md">
         <div className="relative min-h-full">{/* bg gradient */}</div>
         <div
           className="absolute inset-0 bg-gradient-to-b from-[#5038a0]/80
-           via-zinc-900/80 t0-zinc-900 pointer-events-none"
+           via-zinc-900/80 to-zinc-900 "
           aria-hidden="true"
         >
           {/* Content */}
@@ -40,7 +40,7 @@ const AlbumPage = () => {
                 className="w-[240px] h-[240px] shadow-xl rounded"
               />
               <div className="flex- flex-col justify-end">
-                <p className="text-sm font-medium">Album </p>
+                <p className="text-sm font-medium">Album</p>
                 <h1 className="text-7xl font-bold my-4">
                   {currentAlbum?.title}
                 </h1>
@@ -53,12 +53,12 @@ const AlbumPage = () => {
                 </div>
               </div>
             </div>
+
             {/* play button */}
             <div className="px-6 pb-4 flex items-center gap-6">
               <Button
                 size="icon"
-                className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400
-                 hover:scale-105 transition-all"
+                className={`w-14 h-14 rounded-full bg-green-500  hover:bg-green-400 hover:scale-105 transition-all`}
               >
                 <Play className="size-7 text black " />
               </Button>
