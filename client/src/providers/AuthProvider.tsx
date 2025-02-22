@@ -2,6 +2,7 @@ import { axiosInstance } from "@/lib/axios";
 import { useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 // Update the axios default header with the provided token
 const updateApiToken = (token: string | null) => {
@@ -19,12 +20,16 @@ interface AuthProviderProps {
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const { getToken } = useAuth(); // Removed unused 'userId'
   const [loading, setLoading] = useState(true);
+  const { checkAdminStatus } = useAuthStore();
 
   useEffect(() => {
     const initAuth = async () => {
       try {
         const token = await getToken();
         updateApiToken(token);
+        if (token) {
+          await checkAdminStatus();
+        }
       } catch (error: any) {
         updateApiToken(null);
         console.error("Error in auth provider:", error.message);
