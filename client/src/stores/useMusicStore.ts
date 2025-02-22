@@ -10,7 +10,7 @@ interface MusicStore {
   currentAlbum: Album | null;
   featuredSongs: Song[];
   madeForYouSongs: Song[];
-  tredningSongs: Song[];
+  trendingSongs: Song[];
 
   fetchAlbums: () => Promise<void>;
   fetchAlbumById: (id: string) => Promise<void>;
@@ -27,7 +27,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
   currentAlbum: null,
   featuredSongs: [],
   madeForYouSongs: [],
-  tredningSongs: [],
+  trendingSongs: [],
 
   fetchAlbums: async () => {
     set({ isLoading: true, error: null });
@@ -78,7 +78,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await axiosInstance.get("/songs/trending");
-      set({ tredningSongs: response.data });
+      set({ trendingSongs: response.data });
     } catch (error: any) {
       set({ error: error.response.data.message });
     } finally {

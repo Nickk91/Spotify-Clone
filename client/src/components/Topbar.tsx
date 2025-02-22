@@ -1,11 +1,6 @@
 import { LayoutDashboardIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  SignedIn,
-  SignedOut,
-  SignOutButton,
-  UserButton,
-} from "@clerk/clerk-react";
+import { SignedOut, UserButton } from "@clerk/clerk-react";
 import SignInOAuthButtons from "./SignInOAuthButtons.tsx";
 import { useAuthStore } from "@/stores/useAuthStore.ts";
 import { buttonVariants } from "./ui/Button.tsx";
@@ -13,7 +8,7 @@ import { cn } from "@/lib/utils.ts";
 
 const Topbar = () => {
   const { isAdmin } = useAuthStore();
-  console.log("isAdmin:", { isAdmin });
+
   return (
     <div
       className="flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75
@@ -33,9 +28,6 @@ const Topbar = () => {
             Admin Dashboard
           </Link>
         )}
-        <SignedIn>
-          <SignOutButton />
-        </SignedIn>
 
         <SignedOut>
           <SignInOAuthButtons />
