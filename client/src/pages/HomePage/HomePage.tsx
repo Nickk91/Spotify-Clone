@@ -2,7 +2,7 @@ import Topbar from "@/components/Topbar";
 import { useMusicStore } from "@/stores/useMusicStore";
 import { useEffect } from "react";
 import FeaturedSection from "./components/FeaturedSection";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import SectionGrid from "./components/SectionGrid.tsx";
 
 const HomePage = () => {

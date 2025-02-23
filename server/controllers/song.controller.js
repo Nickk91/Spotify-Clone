@@ -37,7 +37,7 @@ export const getMadeForYouSongs = async (req, res, next) => {
     const songs = await Song.aggregate([
       {
         $sample: {
-          size: 6,
+          size: 4,
         },
       },
       {
@@ -60,7 +60,7 @@ export const getTrendingSongs = async (req, res, next) => {
     const songs = await Song.aggregate([
       {
         $sample: {
-          size: 6,
+          size: 4,
         },
       },
       {
