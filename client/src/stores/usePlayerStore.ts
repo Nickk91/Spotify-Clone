@@ -57,6 +57,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   playNext: () => {
     const { currentIndex, queue } = get();
     const nextIndex = currentIndex + 1;
+
     if (nextIndex < queue.length) {
       const nextSong = queue[nextIndex];
       set({ currentSong: nextSong, currentIndex: nextIndex, isPlaying: true });
@@ -67,6 +68,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   playPrevious: () => {
     const { currentIndex, queue } = get();
     const prevIndex = currentIndex - 1;
+
     if (prevIndex >= 0) {
       const prevSong = queue[prevIndex];
       set({ currentSong: prevSong, currentIndex: prevIndex, isPlaying: true });
