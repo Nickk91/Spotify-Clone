@@ -5,6 +5,9 @@ import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./layout/MainLayout.tsx";
 import ChatPage from "./pages/ChatPage/ChatPage.tsx";
 import AlbumPage from "./pages/AlbumPage/AlbumPage.tsx";
+import AdminPage from "./pages/AdminPage/AdminPage.tsx";
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
@@ -19,12 +22,14 @@ function App() {
         />
 
         <Route path="/auth-callback" element={<AuthCallbackPage />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/album/:albumId" element={<AlbumPage />} />
         </Route>
       </Routes>
+      <Toaster />
     </>
   );
 }
