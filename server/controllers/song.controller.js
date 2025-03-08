@@ -1,6 +1,7 @@
 import { Song } from "../models/song.model.js";
 export const getAllSongs = async (req, res, next) => {
   try {
+    console.log("RUN");
     const songs = await Song.find().sort({ createdAt: -1 }); //sort by createdAt field in descending order (newest to oldest)
     res.status(200).json(songs);
   } catch (error) {
