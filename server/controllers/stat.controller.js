@@ -4,8 +4,6 @@ import { Album } from "../models/album.model.js";
 
 export const getStats = async (req, res, next) => {
   try {
-    console.log("getStats:");
-
     const [totalSongs, totalUsers, totalAlbums, uniqueArtists] =
       await Promise.all([
         Song.countDocuments(),
