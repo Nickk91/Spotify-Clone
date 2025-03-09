@@ -65,7 +65,7 @@ export const deleteSong = async (req, res, next) => {
       });
     }
 
-    await Song.findByAndUpdate(id);
+    await Song.findByIdAndUpdate(id);
 
     res.status(200).json({ message: "Song deleted successfully" });
   } catch (error) {
