@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { create } from "zustand";
 import { Album, Song } from "../types/index.ts";
-import Stats from "../types/stats.ts";
+import { Stats } from "../types/index.ts";
 import toast from "react-hot-toast";
 
 interface MusicStore {
