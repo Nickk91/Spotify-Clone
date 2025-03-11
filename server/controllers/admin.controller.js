@@ -17,9 +17,14 @@ const uploadToCloudinary = async (file) => {
 
 export const createSong = async (req, res, next) => {
   try {
-    if (!req.files || !req.file.audioFile || !req.files.imageFile) {
+    console.log("Request Body:", req.body);
+    console.log("Received Files:", req.files);
+
+    // Use req.files instead of req.file
+    if (!req.files || !req.files.audioFile || !req.files.imageFile) {
       return res.status(400).json({ message: "Please upload all files" });
     }
+
     const { title, artist, albumId, duration } = req.body;
     const audioFile = req.files.audioFile;
     const imageFile = req.files.imageFile;
@@ -36,17 +41,14 @@ export const createSong = async (req, res, next) => {
       albumId: albumId || null,
     });
 
-    //if song belogs to an album, update the album's songs array
+    // Save song and update album if necessary
     await song.save();
     if (albumId) {
-      await Album.findByAndUpdate(albumId, {
+      await Album.findByIdAndUpdate(albumId, {
         $push: { songs: song._id },
       });
     }
     res.status(201).json(song);
-
-    // if (!title || !artist || !albumId || !duration) {
-    // }
   } catch (error) {
     console.log("Error in createSong", error);
     next(error);
@@ -65,7 +67,7 @@ export const deleteSong = async (req, res, next) => {
       });
     }
 
-    await Song.findByIdAndUpdate(id);
+    await Song.findByIdAndDelete(id);
 
     res.status(200).json({ message: "Song deleted successfully" });
   } catch (error) {
@@ -78,10 +80,11 @@ export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
     const { imageFile } = req.files;
+    console.log(" req.body", req.body);
 
     const imageUrl = await uploadToCloudinary(imageFile);
 
-    const album = new album({
+    const album = new Album({
       title,
       artist,
       imageUrl,
@@ -92,7 +95,7 @@ export const createAlbum = async (req, res, next) => {
 
     res.status(201).json(album);
   } catch (error) {
-    console.log("Error in createAlbum:", error);
+    console.log("Error in createAlbum", error);
     next(error);
   }
 };
