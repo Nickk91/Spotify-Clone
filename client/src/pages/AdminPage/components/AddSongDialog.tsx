@@ -54,14 +54,17 @@ const AddSongDialog = () => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+
     try {
       if (!files.audio || !files.image) {
-        return toast.error("Please select an audio and image files.");
+        return toast.error("Please upload both audio and image files");
       }
+
       const formData = new FormData();
+
       formData.append("title", newSong.title);
       formData.append("artist", newSong.artist);
-      formData.append("duration", newSong.duration.toString());
+      formData.append("duration", newSong.duration);
       if (newSong.album && newSong.album !== "none") {
         formData.append("albumId", newSong.album);
       }
@@ -69,7 +72,7 @@ const AddSongDialog = () => {
       formData.append("audioFile", files.audio);
       formData.append("imageFile", files.image);
 
-      await axiosInstance.post("/songs", formData, {
+      await axiosInstance.post("/admin/songs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -79,7 +82,7 @@ const AddSongDialog = () => {
         title: "",
         artist: "",
         album: "",
-        duration: " 0",
+        duration: "0",
       });
 
       setFiles({
