@@ -80,10 +80,11 @@ export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
     const { imageFile } = req.files;
+    console.log(" req.body", req.body);
 
     const imageUrl = await uploadToCloudinary(imageFile);
 
-    const album = new album({
+    const album = new Album({
       title,
       artist,
       imageUrl,
@@ -94,7 +95,7 @@ export const createAlbum = async (req, res, next) => {
 
     res.status(201).json(album);
   } catch (error) {
-    console.log("Error in createAlbum:", error);
+    console.log("Error in createAlbum", error);
     next(error);
   }
 };
