@@ -24,3 +24,18 @@ export interface Stats {
   totalUsers: number;
   totalArtists: number;
 }
+
+export interface Message {
+  _id: string;
+  sender: string;
+  receiver: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface User {
+  _id: string;
+  clerkId: string;
+  fullName: string;
+  imageUrl: string;
+}

@@ -3,6 +3,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";
+import { useChatStore } from "@/stores/useChatStore";
 
 // Update the axios default header with the provided token
 const updateApiToken = (token: string | null) => {
@@ -18,9 +19,10 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const { getToken } = useAuth(); // Removed unused 'userId'
+  const { getToken, userId } = useAuth(); // Removed unused 'userId'
   const [loading, setLoading] = useState(true);
   const { checkAdminStatus } = useAuthStore();
+  const { initSocket, disconnectSocket } = useChatStore();
 
   useEffect(() => {
     const initAuth = async () => {
@@ -29,6 +31,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         updateApiToken(token);
         if (token) {
           await checkAdminStatus();
+          //init socket
+          if (userId) initSocket(userId);
         }
       } catch (error: any) {
         updateApiToken(null);
@@ -39,6 +43,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     initAuth();
+
+    //clean up
+    return () => disconnectSocket();
   }, [getToken]);
 
   if (loading) {
