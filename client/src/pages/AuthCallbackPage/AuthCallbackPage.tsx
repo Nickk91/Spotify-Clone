@@ -26,6 +26,7 @@ const AuthCallbackPage = () => {
           firstName: user.firstName,
           lastName: user.lastName,
           imageUrl: user.imageUrl,
+          email: user.emailAddresses[0].emailAddress,
         });
       } catch (error) {
         console.log("Error in auth callback", error);
