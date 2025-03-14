@@ -2,13 +2,14 @@ import { User } from "../models/user.model.js";
 
 export const authCallback = async (req, res, next) => {
   try {
-    const { id, firstName, lastName, imageUrl } = req.body;
+    const { id, firstName, lastName, imageUrl, email } = req.body;
     console.log(
       "authCallback: id, firstName, lastName, imageUrl",
       id,
       firstName,
       lastName,
-      imageUrl
+      imageUrl,
+      email
     );
 
     // check if user already exists
@@ -20,6 +21,7 @@ export const authCallback = async (req, res, next) => {
         clerkId: id,
         fullName: `${firstName || ""} ${lastName || ""}`.trim(),
         imageUrl,
+        email,
       });
     }
 
