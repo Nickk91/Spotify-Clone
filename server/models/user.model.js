@@ -1,6 +1,7 @@
 /* user.model.js */
 
 import mongoose from "mongoose";
+import { type } from "os";
 
 const userSchema = new mongoose.Schema(
   {
@@ -11,6 +12,11 @@ const userSchema = new mongoose.Schema(
     imageUrl: {
       type: String,
       required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
     clerkId: {
       type: String,

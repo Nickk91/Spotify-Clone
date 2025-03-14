@@ -46,7 +46,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
     //clean up
     return () => disconnectSocket();
-  }, [getToken]);
+  }, [getToken, userId, checkAdminStatus, initSocket, disconnectSocket]);
 
   if (loading) {
     return (
